@@ -6,10 +6,12 @@ import {
     updateProfile,
     sendPasswordResetEmail
 } from "firebase/auth";
+import { getFirestore, doc, setDoc } from "firebase/firestore";
 import type { User } from "firebase/auth";
 import app from "./config";
 
 const auth = getAuth(app);
+const db = getFirestore(app);
 
 export const signUpWithEmailAndPassword = async (
     email: string,
@@ -20,6 +22,13 @@ export const signUpWithEmailAndPassword = async (
     if (userCredential.user) {
         await updateProfile(userCredential.user, {
             displayName
+        });
+
+        await setDoc(doc(db, "users", userCredential.user.uid), {
+            displayName,
+            email,
+            createdAt: new Date(),
+            uid: userCredential.user.uid
         });
     }
     return userCredential.user;
