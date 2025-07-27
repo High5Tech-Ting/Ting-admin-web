@@ -11,6 +11,9 @@ import EditUserPage from "@/pages/dashboard/users/[id]";
 import { ProtectedRoute } from "@/components/protected-route";
 import { AuthProvider } from "./context/auth-context";
 import { Toaster } from "@/components/ui/sonner";
+import TicketsPage from "./pages/dashboard/tickets";
+import TicketsListPage from "./pages/dashboard/tickets/list";
+import DetailTicketPage from "@/pages/dashboard/tickets/[id]";
 
 function App() {
   return (
@@ -68,6 +71,37 @@ function App() {
               </ProtectedRoute>
             }
           />
+          <Route
+            path="/dashboard/tickets"
+            element={
+              <ProtectedRoute>
+                <DashboardLayout>
+                  <TicketsPage />
+                </DashboardLayout>
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/dashboard/tickets/list"
+            element={
+              <ProtectedRoute>
+                <DashboardLayout>
+                  <TicketsListPage />
+                </DashboardLayout>
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/dashboard/tickets/:id"
+            element={
+              <ProtectedRoute>
+                <DashboardLayout>
+                  <DetailTicketPage />
+                </DashboardLayout>
+              </ProtectedRoute>
+            }
+          />
+
           <Route
             path="/dashboard/users/add"
             element={

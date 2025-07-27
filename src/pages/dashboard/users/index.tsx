@@ -95,9 +95,11 @@ export default function UsersPage() {
             <Mail className="size-4" />
             Invite User
           </Button>
-          <Button>
-            Add User
-          </Button>
+          <Button asChild>
+  <Link to="/dashboard/users/add">
+    Add User
+  </Link>
+</Button>
         </div>
       </div>
       
