@@ -40,6 +40,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
     { name: "Dashboard", path: "/dashboard", icon: <LayoutDashboard size={20} /> },
     { name: "Users", path: "/dashboard/users", icon: <Users size={20} /> },
     { name: "Tickets", path: "/dashboard/tickets", icon: <Ticket size={20} /> },
+    { name: "Appointments", path: "/dashboard/appointments", icon: <CheckSquare size={20} /> },
     { name: "Tasks", path: "/dashboard/tasks", icon: <CheckSquare size={20} /> },
     { name: "Chats", path: "/dashboard/chats", icon: <MessagesSquare size={20} /> },
     { name: "Settings", path: "/dashboard/settings", icon: <Settings size={20} /> },

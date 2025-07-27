@@ -14,6 +14,9 @@ import { Toaster } from "@/components/ui/sonner";
 import TicketsPage from "./pages/dashboard/tickets";
 import TicketsListPage from "./pages/dashboard/tickets/list";
 import DetailTicketPage from "@/pages/dashboard/tickets/[id]";
+import AppointmentsPage from "@/pages/dashboard/appointments";
+import AddAppointmentPage from "@/pages/dashboard/appointments/add";
+import AppointmentDetailPage from "@/pages/dashboard/appointments/[id]";
 
 function App() {
   return (
@@ -97,6 +100,38 @@ function App() {
               <ProtectedRoute>
                 <DashboardLayout>
                   <DetailTicketPage />
+                </DashboardLayout>
+              </ProtectedRoute>
+            }
+          />
+
+          {/* Appointments */}
+          <Route
+            path="/dashboard/appointments"
+            element={
+              <ProtectedRoute>
+                <DashboardLayout>
+                  <AppointmentsPage />
+                </DashboardLayout>
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/dashboard/appointments/:id"
+            element={
+              <ProtectedRoute>
+                <DashboardLayout>
+                  <AppointmentDetailPage />
+                </DashboardLayout>
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/dashboard/appointments/add"
+            element={
+              <ProtectedRoute>
+                <DashboardLayout>
+                  <AddAppointmentPage />
                 </DashboardLayout>
               </ProtectedRoute>
             }
