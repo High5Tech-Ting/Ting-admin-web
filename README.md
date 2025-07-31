@@ -1,13 +1,89 @@
-# React + TypeScript + Vite
+# Ting Admin Dashboard
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is the administrative dashboard for Ting, built with React, TypeScript, and Vite. The dashboard provides comprehensive management capabilities for the Ting platform, including user management, appointment scheduling, ticket handling, and system administration.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **User Management**: Manage user accounts, profiles, and permissions
+- **Appointment System**: Schedule, view, and manage appointments
+- **Ticket Management**: Handle support tickets and customer inquiries
+- **Authentication**: Secure login/signup with Firebase authentication
+- **Dashboard Analytics**: Overview of key metrics and system status
+- **Responsive Design**: Optimized for desktop and mobile devices
 
-## Expanding the ESLint configuration
+## Tech Stack
+
+- **Frontend**: React 18 with TypeScript
+- **Build Tool**: Vite for fast development and optimized builds
+- **UI Components**: Custom component library with Tailwind CSS
+- **Authentication**: Firebase Auth
+- **Database**: Firestore
+- **State Management**: React Context API
+- **Routing**: React Router DOM
+
+## Project Structure
+
+The application follows a modular structure with:
+- `src/components/` - Reusable UI components
+- `src/pages/` - Application pages and routes
+- `src/context/` - Global state management
+- `src/firebase/` - Firebase configuration and utilities
+- `src/hooks/` - Custom React hooks
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js (version 16 or higher)
+- npm or yarn package manager
+- Firebase project with Firestore and Authentication enabled
+
+### Installation
+
+1. Clone the repository:
+```bash
+git clone <repository-url>
+cd ting-admin-dashboard
+```
+
+2. Install dependencies:
+```bash
+npm install
+```
+
+3. Configure Firebase:
+   - Create a `.env` file in the root directory
+   - Add your Firebase configuration variables:
+   ```
+   VITE_FIREBASE_API_KEY=your_api_key
+   VITE_FIREBASE_AUTH_DOMAIN=your_auth_domain
+   VITE_FIREBASE_PROJECT_ID=your_project_id
+   VITE_FIREBASE_STORAGE_BUCKET=your_storage_bucket
+   VITE_FIREBASE_MESSAGING_SENDER_ID=your_sender_id
+   VITE_FIREBASE_APP_ID=your_app_id
+   ```
+
+4. Start the development server:
+```bash
+npm run dev
+```
+
+5. Open [http://localhost:5173](http://localhost:5173) to view the application in your browser.
+
+### Available Scripts
+
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run preview` - Preview production build
+- `npm run lint` - Run ESLint
+
+## Development Guidelines
+
+### Code Style
+
+The project uses ESLint and TypeScript for code quality and consistency. 
+
+### ESLint Configuration
 
 If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
 
@@ -67,3 +143,20 @@ export default tseslint.config([
   },
 ])
 ```
+
+### Component Development
+
+- Use TypeScript interfaces for all component props
+- Follow the existing component structure in `src/components/`
+- Utilize the custom UI components from `src/components/ui/`
+- Implement proper error handling and loading states
+
+### Firebase Integration
+
+- All Firebase operations should go through the utilities in `src/firebase/`
+- Use the `useFirestore` hook for database operations
+- Implement proper authentication checks using the auth context
+
+## License
+
+This project is proprietary software for Ting platform administration.
