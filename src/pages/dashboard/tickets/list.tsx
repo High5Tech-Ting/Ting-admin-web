@@ -30,9 +30,7 @@ import {
 import {
   MoreHorizontal,
   ChevronLeft,
-  ChevronRight,
-  ChevronsLeft,
-  ChevronsRight,
+  Loader2,
 } from "lucide-react";
 import {
   DropdownMenu,
@@ -41,48 +39,17 @@ import {
   DropdownMenuRadioGroup,
   DropdownMenuRadioItem,
 } from "@/components/ui/dropdown-menu";
-
-interface Ticket {
-  id: string;
-  subject: string;
-  student: string;
-  category: string;
-  priority: string;
-  status: string;
-  assignee: string;
-  created: string;
-  updated: string;
-  slaDue: string;
-  replies: number;
-  attachments: number;
-}
-
-const initialTickets: Ticket[] = [
-  {
-    id: "TKT-1234",
-    subject: "Issue with course registration",
-    student: "Liam Harper",
-    category: "Registration",
-    priority: "High",
-    status: "Open",
-    assignee: "Sarah Chen",
-    created: "2023-09-15",
-    updated: "2023-09-15",
-    slaDue: "2023-09-18",
-    replies: 2,
-    attachments: 1,
-  },
-];
+import { useSupportTickets } from "@/hooks/useFirestore";
 
 export default function TicketsListPage() {
   const { search } = useLocation();
   const params = new URLSearchParams(search);
   const initialTab =
-    (params.get("tab") as "All" | "Open" | "Pending" | "Closed") ?? "All";
+    (params.get("tab") as "all" | "pending" | "assigned" | "closed") ?? "all";
 
   const navigate = useNavigate();
   const [searchTerm, setSearch] = useState("");
-  const [tab, setTab] = useState<"All" | "Open" | "Pending" | "Closed">(
+  const [tab, setTab] = useState<"all" | "pending" | "assigned" | "closed">(
     initialTab
   );
   const [priorityFilter, setPriorityFilter] = useState<string>("");
@@ -92,16 +59,52 @@ export default function TicketsListPage() {
     [Date | undefined, Date | undefined]
   >([undefined, undefined]);
 
-  // pagination state
-  const [currentPage, setCurrentPage] = useState(1);
-  const [rowsPerPage, setRowsPerPage] = useState(10);
-  const totalPages = Math.ceil(initialTickets.length / rowsPerPage);
-
-  // slice tickets for current page
-  const paginatedTickets = initialTickets.slice(
-    (currentPage - 1) * rowsPerPage,
-    currentPage * rowsPerPage
+  // Get tickets with Firebase
+  const { tickets, loading, error, hasMore, loadMore } = useSupportTickets(
+    tab === "all" ? undefined : tab
   );
+
+  // Filter tickets based on search term and date range
+  const filteredTickets = tickets.filter((ticket) => {
+    const matchesSearch = !searchTerm || 
+      ticket.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      ticket.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      ticket.id?.toLowerCase().includes(searchTerm.toLowerCase());
+
+    const matchesDateRange = !dateRange[0] || !dateRange[1] || (
+      ticket.createdAt >= dateRange[0] && ticket.createdAt <= dateRange[1]
+    );
+
+    return matchesSearch && matchesDateRange;
+  });
+
+  const getStatusColor = (status: string) => {
+    switch (status) {
+      case 'pending':
+        return 'bg-yellow-100 text-yellow-800 border-yellow-200';
+      case 'assigned':
+        return 'bg-blue-100 text-blue-800 border-blue-200';
+      case 'in_progress':
+        return 'bg-purple-100 text-purple-800 border-purple-200';
+      case 'resolved':
+        return 'bg-green-100 text-green-800 border-green-200';
+      case 'closed':
+        return 'bg-gray-100 text-gray-800 border-gray-200';
+      default:
+        return 'bg-gray-100 text-gray-800 border-gray-200';
+    }
+  };
+
+  if (error) {
+    return (
+      <div className="flex items-center justify-center h-64">
+        <div className="text-center">
+          <p className="text-red-600 mb-2">Error loading tickets</p>
+          <p className="text-sm text-muted-foreground">{error}</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div
@@ -138,15 +141,15 @@ export default function TicketsListPage() {
               Ticket List
             </h1>
           </div>
-          <Button variant="outline" size="sm">
-            New Ticket
+          <Button variant="outline" size="sm" asChild>
+            <Link to="/dashboard/tickets/add">New Ticket</Link>
           </Button>
         </div>
 
         {/* Top filter bar */}
         <div className="flex flex-wrap items-center gap-2 px-4 py-4 mb-6">
           <Input
-            placeholder="Search ID, subject, student..."
+            placeholder="Search ID, subject, description..."
             value={searchTerm}
             onChange={(e) => setSearch(e.target.value)}
             className="flex-1 max-w-sm"
@@ -205,30 +208,30 @@ export default function TicketsListPage() {
         {/* Tabs */}
         <Tabs
           value={tab}
-          onValueChange={setTab}
+          onValueChange={(value) => setTab(value as typeof tab)}
           className="border-b border-[#dde1e3] px-4 pb-2"
         >
           <TabsList className="flex gap-8">
             <TabsTrigger
-              value="All"
+              value="all"
               className="data-[state=active]:bg-black data-[state=active]:text-white cursor-pointer"
             >
               All
             </TabsTrigger>
             <TabsTrigger
-              value="Open"
-              className="data-[state=active]:bg-black data-[state=active]:text-white cursor-pointer"
-            >
-              Open
-            </TabsTrigger>
-            <TabsTrigger
-              value="Pending"
+              value="pending"
               className="data-[state=active]:bg-black data-[state=active]:text-white cursor-pointer"
             >
               Pending
             </TabsTrigger>
             <TabsTrigger
-              value="Closed"
+              value="assigned"
+              className="data-[state=active]:bg-black data-[state=active]:text-white cursor-pointer"
+            >
+              Assigned
+            </TabsTrigger>
+            <TabsTrigger
+              value="closed"
               className="data-[state=active]:bg-black data-[state=active]:text-white cursor-pointer"
             >
               Closed
@@ -241,124 +244,117 @@ export default function TicketsListPage() {
             <Table>
               <TableHeader>
                 <TableRow>
-                  <TableHead className="w-6" />
-                  <TableHead className="w-[400px]">ID</TableHead>
-                  <TableHead className="w-[400px]">Subject</TableHead>
-                  <TableHead className="w-[400px]">Student</TableHead>
-                  <TableHead className="w-60">Category</TableHead>
-                  <TableHead className="w-60">Priority</TableHead>
-                  <TableHead className="w-60">Status</TableHead>
-                  <TableHead className="w-[400px]">Assignee</TableHead>
-                  <TableHead className="w-[400px]">Created</TableHead>
-                  <TableHead className="w-[400px]">Updated</TableHead>
-                  <TableHead className="w-[400px]">SLA Due</TableHead>
-                  <TableHead className="w-[400px]">Replies</TableHead>
-                  <TableHead className="w-[400px]">Attachments</TableHead>
-                  <TableHead className="w-60">Actions</TableHead>
+                  <TableHead className="w-[150px]">ID</TableHead>
+                  <TableHead className="w-[300px]">Title</TableHead>
+                  <TableHead className="w-[200px]">Status</TableHead>
+                  <TableHead className="w-[200px]">Assignee</TableHead>
+                  <TableHead className="w-[150px]">Created</TableHead>
+                  <TableHead className="w-[150px]">Updated</TableHead>
+                  <TableHead className="w-[100px]">Messages</TableHead>
+                  <TableHead className="w-[80px]">Actions</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {paginatedTickets.map((ticket) => (
-                  <TableRow
-                    onClick={() => navigate(`/dashboard/tickets/:id`)}
-                    className="cursor-pointer"
-                  >
-                    <TableCell />
-                    <TableCell>{ticket.id}</TableCell>
-                    <TableCell>{ticket.subject}</TableCell>
-                    <TableCell>{ticket.student}</TableCell>
-                    <TableCell>
-                      <Button variant="outline" size="sm">
-                        {ticket.category}
-                      </Button>
-                    </TableCell>
-                    <TableCell>
-                      <Button variant="outline" size="sm">
-                        {ticket.priority}
-                      </Button>
-                    </TableCell>
-                    <TableCell>
-                      <Button variant="outline" size="sm">
-                        {ticket.status}
-                      </Button>
-                    </TableCell>
-                    <TableCell>{ticket.assignee}</TableCell>
-                    <TableCell>{ticket.created}</TableCell>
-                    <TableCell>{ticket.updated}</TableCell>
-                    <TableCell>{ticket.slaDue}</TableCell>
-                    <TableCell>{ticket.replies}</TableCell>
-                    <TableCell>{ticket.attachments}</TableCell>
-                    <TableCell>
-                      <Button variant="ghost" size="icon">
-                        <MoreHorizontal size={16} />
-                      </Button>
+                {loading && filteredTickets.length === 0 ? (
+                  <TableRow>
+                    <TableCell colSpan={8} className="text-center py-8">
+                      <div className="flex items-center justify-center">
+                        <Loader2 className="h-6 w-6 animate-spin mr-2" />
+                        Loading tickets...
+                      </div>
                     </TableCell>
                   </TableRow>
-                ))}
+                ) : filteredTickets.length === 0 ? (
+                  <TableRow>
+                    <TableCell colSpan={8} className="text-center py-8 text-muted-foreground">
+                      No tickets found
+                    </TableCell>
+                  </TableRow>
+                ) : (
+                  filteredTickets.map((ticket) => (
+                    <TableRow
+                      key={ticket.id}
+                      onClick={() => navigate(`/dashboard/tickets/${ticket.id}`)}
+                      className="cursor-pointer hover:bg-muted/50"
+                    >
+                      <TableCell className="font-mono text-sm">
+                        {ticket.id?.slice(-8).toUpperCase()}
+                      </TableCell>
+                      <TableCell>
+                        <div>
+                          <div className="font-medium">{ticket.title}</div>
+                          <div className="text-sm text-muted-foreground truncate max-w-[280px]">
+                            {ticket.description}
+                          </div>
+                        </div>
+                      </TableCell>
+                      <TableCell>
+                        <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium border ${getStatusColor(ticket.status)}`}>
+                          {ticket.status.replace('_', ' ').toUpperCase()}
+                        </span>
+                      </TableCell>
+                      <TableCell>
+                        {ticket.assignedToName || (
+                          <span className="text-muted-foreground">Unassigned</span>
+                        )}
+                      </TableCell>
+                      <TableCell className="text-sm">
+                        {ticket.createdAt.toLocaleDateString()}
+                      </TableCell>
+                      <TableCell className="text-sm">
+                        {ticket.updatedAt.toLocaleDateString()}
+                      </TableCell>
+                      <TableCell className="text-center">
+                        <span className="inline-flex items-center justify-center w-6 h-6 bg-blue-100 text-blue-800 rounded-full text-xs font-medium">
+                          {ticket.messages?.length || 0}
+                        </span>
+                      </TableCell>
+                      <TableCell>
+                        <Button 
+                          variant="ghost" 
+                          size="icon"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            // Handle action menu
+                          }}
+                        >
+                          <MoreHorizontal size={16} />
+                        </Button>
+                      </TableCell>
+                    </TableRow>
+                  ))
+                )}
               </TableBody>
             </Table>
           </div>
         </div>
 
-        {/* Pagination footer */}
-        <div className="flex items-center justify-between px-4 py-4 border-t mt-6">
-          <span className="text-sm text-muted-foreground">
-            Page {currentPage} of {totalPages}
-          </span>
-          <div className="flex items-center space-x-1">
-            <Button
-              variant="outline"
-              size="icon"
-              disabled={currentPage === 1}
-              onClick={() => setCurrentPage(1)}
+        {/* Load More */}
+        {hasMore && (
+          <div className="flex items-center justify-center px-4 py-4">
+            <Button 
+              variant="outline" 
+              onClick={loadMore}
+              disabled={loading}
+              className="flex items-center gap-2"
             >
-              <ChevronsLeft size={16} />
+              {loading ? (
+                <>
+                  <Loader2 className="h-4 w-4 animate-spin" />
+                  Loading...
+                </>
+              ) : (
+                'Load More'
+              )}
             </Button>
-            <Button
-              variant="outline"
-              size="icon"
-              disabled={currentPage === 1}
-              onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
-            >
-              <ChevronLeft size={16} />
-            </Button>
-            <Button variant="outline" size="sm" className="w-10">
-              {currentPage}
-            </Button>
-            <Button
-              variant="outline"
-              size="icon"
-              disabled={currentPage === totalPages}
-              onClick={() =>
-                setCurrentPage((prev) => Math.min(prev + 1, totalPages))
-              }
-            >
-              <ChevronRight size={16} />
-            </Button>
-            <Button
-              variant="outline"
-              size="icon"
-              disabled={currentPage === totalPages}
-              onClick={() => setCurrentPage(totalPages)}
-            >
-              <ChevronsRight size={16} />
-            </Button>
-            <select
-              className="h-8 rounded-md border border-input bg-transparent px-3 py-1 text-sm"
-              value={rowsPerPage}
-              onChange={(e) => {
-                setRowsPerPage(Number(e.target.value));
-                setCurrentPage(1);
-              }}
-            >
-              {[10, 20, 30, 40, 50].map((n) => (
-                <option key={n} value={n}>
-                  {n} / page
-                </option>
-              ))}
-            </select>
           </div>
-        </div>
+        )}
+
+        {!hasMore && filteredTickets.length > 0 && (
+          <div className="flex items-center justify-center px-4 py-4 text-sm text-muted-foreground">
+            All tickets loaded ({filteredTickets.length} total)
+          </div>
+        )}
       </main>
     </div>
   );

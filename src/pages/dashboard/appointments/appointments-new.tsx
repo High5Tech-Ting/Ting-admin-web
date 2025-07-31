@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card } from "@/components/ui/card";
-import {
+import { 
   Calendar,
   Clock,
   User,
@@ -41,17 +41,17 @@ import {
 export default function AppointmentsPage() {
   const [searchTerm, setSearchTerm] = useState("");
   const [statusFilter, setStatusFilter] = useState<string>("all");
-  const {
-    appointments,
-    loading,
-    error,
-    hasMore,
+  const { 
+    appointments, 
+    loading, 
+    error, 
+    hasMore, 
     loadMore
   } = useAppointments();
 
   const filteredAppointments = appointments.filter(appointment => {
     const matchesSearch = appointment.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      appointment.lecturerName?.toLowerCase().includes(searchTerm.toLowerCase());
+                         appointment.lecturerName?.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesStatus = statusFilter === "all" || appointment.status === statusFilter;
     return matchesSearch && matchesStatus;
   });
@@ -232,8 +232,8 @@ export default function AppointmentsPage() {
                     <div className="flex flex-col items-center gap-2">
                       <Calendar className="h-8 w-8 text-muted-foreground" />
                       <p className="text-muted-foreground">
-                        {searchTerm || statusFilter !== "all"
-                          ? "No appointments match your filters"
+                        {searchTerm || statusFilter !== "all" 
+                          ? "No appointments match your filters" 
                           : "No appointments found"
                         }
                       </p>
@@ -246,9 +246,9 @@ export default function AppointmentsPage() {
                     <TableCell className="font-medium">
                       {appointment.title}
                     </TableCell>
-                    <TableCell className="px-4">
-                      <div className="overflow-hidden">
-                        <p className="text-sm max-w-44">{appointment.description}</p>
+                    <TableCell>
+                      <div>
+                        <p className="text-sm">{appointment.description}</p>
                       </div>
                     </TableCell>
                     <TableCell>
@@ -281,7 +281,7 @@ export default function AppointmentsPage() {
                         </DropdownMenuTrigger>
                         <DropdownMenuContent align="end">
                           <DropdownMenuItem asChild>
-                            <Link
+                            <Link 
                               to={`/dashboard/appointments/${appointment.id}`}
                               className="flex items-center gap-2"
                             >
@@ -290,7 +290,7 @@ export default function AppointmentsPage() {
                             </Link>
                           </DropdownMenuItem>
                           <DropdownMenuItem asChild>
-                            <Link
+                            <Link 
                               to={`/dashboard/appointments/${appointment.id}/edit`}
                               className="flex items-center gap-2"
                             >
@@ -315,8 +315,8 @@ export default function AppointmentsPage() {
         {/* Load More Button */}
         {hasMore && (
           <div className="p-4 text-center border-t">
-            <Button
-              variant="outline"
+            <Button 
+              variant="outline" 
               onClick={loadMore}
               className="flex items-center gap-2"
             >

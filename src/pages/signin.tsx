@@ -25,7 +25,7 @@ export default function SignIn() {
             setLoading(true);
             await loginWithEmailAndPassword(email, password);
             toast.success("Signed in successfully!");
-            navigate("/home");
+            navigate("/dashboard");
         } catch (err) {
             console.error(err);
             toast.error("Failed to sign in. Invalid email or password.");

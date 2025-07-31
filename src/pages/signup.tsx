@@ -40,7 +40,7 @@ export default function SignUp() {
             setLoading(true);
             await signUpWithEmailAndPassword(email, password, name);
             toast.success("Account created successfully!");
-            navigate("/home");
+            navigate("/dashboard");
         }
         catch (err) {
             console.error(err);

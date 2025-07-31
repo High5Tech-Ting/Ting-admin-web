@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useNavigate, } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import {
   Popover,
@@ -9,7 +9,7 @@ import {
 import { Calendar } from "@/components/ui/calendar";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { ChevronLeft } from "lucide-react";
+import { ChevronLeft, Loader2 } from "lucide-react";
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@/components/ui/breadcrumb";
 import {
   DropdownMenu,
@@ -18,8 +18,15 @@ import {
   DropdownMenuRadioGroup,
   DropdownMenuRadioItem,
 } from "@/components/ui/dropdown-menu";
+import { createAppointment } from "@/firebase/firestore";
+import { useAuth } from "@/context/auth-context";
+import { toast } from "sonner";
 
 export default function AddAppointmentPage() {
+  const { currentUser } = useAuth();
+  const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
+  
   const [student, setStudent] = useState("");
   const [advisor, setAdvisor] = useState("");
   const [date, setDate] = useState<Date>();
@@ -29,7 +36,48 @@ export default function AddAppointmentPage() {
   const [mode, setMode] = useState<"in-person" | "virtual">("in-person");
   const [location, setLocation] = useState("");
   const [notes, setNotes] = useState("");
-    const navigate = useNavigate();
+
+  const handleSubmit = async () => {
+    if (!currentUser) {
+      toast.error("You must be logged in to create an appointment");
+      return;
+    }
+
+    if (!date || !time || !type || !advisor) {
+      toast.error("Please fill in all required fields");
+      return;
+    }
+
+    setLoading(true);
+    try {
+      // Create appointment date/time
+      const appointmentDateTime = new Date(date);
+      const [hours, minutes] = time.split(':');
+      appointmentDateTime.setHours(parseInt(hours), parseInt(minutes));
+
+      const appointmentData = {
+        title: `${type} - ${advisor}`,
+        description: notes || `${type} appointment with ${advisor}`,
+        appointmentDate: appointmentDateTime,
+        timeSlot: `${time} - ${duration ? `${duration} mins` : '60 mins'}`,
+        location: location || (mode === "virtual" ? "Virtual Meeting" : "TBD"),
+        status: "pending" as const,
+        userId: currentUser.uid,
+        lecturerId: advisor,
+        lecturerName: advisor,
+        messages: [],
+      };
+
+      const appointmentId = await createAppointment(appointmentData);
+      toast.success("Appointment scheduled successfully!");
+      navigate(`/dashboard/appointments/${appointmentId}`);
+    } catch (error) {
+      console.error("Error creating appointment:", error);
+      toast.error("Failed to schedule appointment. Please try again.");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div className="bg-white">
@@ -220,10 +268,22 @@ export default function AddAppointmentPage() {
 
         {/* Actions */}
         <div className="flex justify-end gap-3">
-          <Button variant="outline" asChild>
+          <Button variant="outline" asChild disabled={loading}>
             <Link to="/dashboard/appointments">Cancel</Link>
           </Button>
-          <Button>Save</Button>
+          <Button 
+            onClick={handleSubmit} 
+            disabled={loading || !date || !time || !type || !advisor}
+          >
+            {loading ? (
+              <>
+                <Loader2 size={16} className="animate-spin mr-2" />
+                Scheduling...
+              </>
+            ) : (
+              "Schedule Appointment"
+            )}
+          </Button>
         </div>
       </div>
     </div>

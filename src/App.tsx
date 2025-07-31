@@ -1,7 +1,6 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import SignIn from "@/pages/signin";
 import SignUp from "@/pages/signup";
-import Home from "@/pages/home";
 import AuthLayout from "@/components/auth_layout";
 import DashboardLayout from "@/components/layouts/dashboard-layout";
 import DashboardPage from "@/pages/dashboard";
@@ -13,10 +12,12 @@ import { AuthProvider } from "./context/auth-context";
 import { Toaster } from "@/components/ui/sonner";
 import TicketsPage from "./pages/dashboard/tickets";
 import TicketsListPage from "./pages/dashboard/tickets/list";
+import AddTicketPage from "./pages/dashboard/tickets/add";
 import DetailTicketPage from "@/pages/dashboard/tickets/[id]";
 import AppointmentsPage from "@/pages/dashboard/appointments";
 import AddAppointmentPage from "@/pages/dashboard/appointments/add";
 import AppointmentDetailPage from "@/pages/dashboard/appointments/[id]";
+import NotFound from "./pages/notFound";
 
 function App() {
   return (
@@ -40,16 +41,6 @@ function App() {
               <AuthLayout>
                 <SignUp />
               </AuthLayout>
-            }
-          />
-
-          {/* Legacy Home Route */}
-          <Route
-            path="/home"
-            element={
-              <ProtectedRoute>
-                <Home />
-              </ProtectedRoute>
             }
           />
 
@@ -90,6 +81,16 @@ function App() {
               <ProtectedRoute>
                 <DashboardLayout>
                   <TicketsListPage />
+                </DashboardLayout>
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/dashboard/tickets/add"
+            element={
+              <ProtectedRoute>
+                <DashboardLayout>
+                  <AddTicketPage />
                 </DashboardLayout>
               </ProtectedRoute>
             }
@@ -156,6 +157,11 @@ function App() {
                 </DashboardLayout>
               </ProtectedRoute>
             }
+          />
+
+          <Route
+            path="*"
+            element={<NotFound />}
           />
         </Routes>
         <Toaster />

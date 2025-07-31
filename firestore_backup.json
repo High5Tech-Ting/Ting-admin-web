@@ -1,0 +1,348 @@
+{
+  "appointment_messages": {
+    "DIa6SVcJdDd0Sq0UR4It": {
+      "appointmentId": "UzFSnchNQlLQW6wdCgrr",
+      "createdAt": "Wed, 30 Jul 2025 17:25:06 GMT",
+      "isFromLecturer": false,
+      "message": "hihi",
+      "senderId": "GNnXo23wI3Pqvo1ape4g2Tl7Kbe2",
+      "senderName": ""
+    },
+    "U6Q4hV5y45NYlZyNb2Fc": {
+      "appointmentId": "UzFSnchNQlLQW6wdCgrr",
+      "createdAt": "Wed, 30 Jul 2025 17:20:27 GMT",
+      "isFromLecturer": false,
+      "message": "hihi",
+      "senderId": "GNnXo23wI3Pqvo1ape4g2Tl7Kbe2",
+      "senderName": ""
+    }
+  },
+  "appointments": {
+    "S9QN5OcziI6AHECLq9qE": {
+      "appointmentDate": "Thu, 07 Aug 2025 18:30:00 GMT",
+      "createdAt": "Wed, 30 Jul 2025 19:34:30 GMT",
+      "description": "Academic meeting scheduled \u2014 allocate time to review student\u2019s assignment draft before the meeting. Ensure feedback is prepared and ready to be discussed. Consider blocking 30\u201345 minutes for draft review prior to the meeting.",
+      "lecturerId": null,
+      "lecturerName": null,
+      "location": "Auditorium",
+      "messages": {
+        "yEwoxCtNwUd2taMHG1wn": {
+          "appointmentId": "S9QN5OcziI6AHECLq9qE",
+          "createdAt": "Wed, 30 Jul 2025 19:34:32 GMT",
+          "isFromLecturer": true,
+          "message": "Academic meeting scheduled \u2014 allocate time to review student\u2019s assignment draft before the meeting. Ensure feedback is prepared and ready to be discussed. Consider blocking 30\u201345 minutes for draft review prior to the meeting.",
+          "senderId": "VgRjmAbxl0NmH2WnO0jUGclgvc53",
+          "senderName": "Savindu Nipun"
+        }
+      },
+      "status": "pending",
+      "timeSlot": "11:00 - 12:00",
+      "title": "meeting",
+      "updatedAt": "Wed, 30 Jul 2025 19:34:32 GMT",
+      "userId": "VgRjmAbxl0NmH2WnO0jUGclgvc53"
+    }
+  },
+  "conversations": {
+    "GNnXo23wI3Pqvo1ape4g2Tl7Kbe2_i14bEX30GkT509oJz0pggxsRcs62": {
+      "createdAt": "Wed, 30 Jul 2025 11:54:43 GMT",
+      "lastMessage": "Hello",
+      "lastMessageTime": "Wed, 30 Jul 2025 11:54:55 GMT",
+      "messages": {
+        "LBLd1UXdDI0KzHaQ4X6p": {
+          "deletedFor": [],
+          "delivered": false,
+          "deliveredAt": null,
+          "fileName": null,
+          "fileType": null,
+          "fileUrl": null,
+          "isDeletedForEveryone": false,
+          "messageId": "LBLd1UXdDI0KzHaQ4X6p",
+          "read": false,
+          "readAt": null,
+          "receiverId": "GNnXo23wI3Pqvo1ape4g2Tl7Kbe2",
+          "replyToMessageId": null,
+          "replyToSenderId": null,
+          "replyToText": null,
+          "senderId": "i14bEX30GkT509oJz0pggxsRcs62",
+          "status": "sent",
+          "text": "Hello",
+          "timestamp": "Wed, 30 Jul 2025 11:54:54 GMT"
+        }
+      },
+      "participants": [
+        "i14bEX30GkT509oJz0pggxsRcs62",
+        "GNnXo23wI3Pqvo1ape4g2Tl7Kbe2"
+      ],
+      "typingUsers": {
+        "i14bEX30GkT509oJz0pggxsRcs62": false
+      },
+      "unreadMessages": {
+        "GNnXo23wI3Pqvo1ape4g2Tl7Kbe2": 1,
+        "i14bEX30GkT509oJz0pggxsRcs62": 0
+      }
+    }
+  },
+  "events": {
+    "OKIpXIbz5N1N7yEQ6YDq": {
+      "batchNo": "Batch 2023",
+      "createdBy": "i14bEX30GkT509oJz0pggxsRcs62",
+      "date": "Tue, 29 Jul 2025 18:30:00 GMT",
+      "description": "fWWWWWWWWWWWWWWWWWWWWWWWWWWWFUbsfbfu",
+      "endTime": "Wed, 30 Jul 2025 11:10:00 GMT",
+      "startTime": "Wed, 30 Jul 2025 11:02:00 GMT",
+      "status": "active",
+      "title": "vcwyfwfvvcscf"
+    },
+    "Q2o9DmCYs86UeyF1hF2W": {
+      "batchNo": "Batch 2023",
+      "createdBy": "i14bEX30GkT509oJz0pggxsRcs62",
+      "date": "Tue, 29 Jul 2025 18:30:00 GMT",
+      "description": "Join us for the HappeningBA Workshop, an engaging and informative session designed to provide valuable insights into Agile methodology directly from industry experts. This workshop will cover real-world applications of Agile practices, including Scrum, iterative development, and team collaboration. It\u2019s an excellent opportunity for students to bridge the gap between academic knowledge and industry expectations, enhancing their readiness for modern software development environments.",
+      "endTime": "Wed, 30 Jul 2025 10:15:00 GMT",
+      "startTime": "Wed, 30 Jul 2025 10:00:00 GMT",
+      "status": "active",
+      "title": "workshop !!"
+    },
+    "eoZPortL6mVoMVlFgPYt": {
+      "batchNo": "Batch 2023",
+      "createdBy": "i14bEX30GkT509oJz0pggxsRcs62",
+      "date": "Tue, 29 Jul 2025 18:30:00 GMT",
+      "description": "cv acyfdfhdd",
+      "endTime": "Wed, 30 Jul 2025 11:16:00 GMT",
+      "startTime": "Wed, 30 Jul 2025 11:06:00 GMT",
+      "status": "active",
+      "title": "new"
+    },
+    "uKy5Saugun8qG33Cws1W": {
+      "batchNo": "Batch 2023",
+      "createdBy": "i14bEX30GkT509oJz0pggxsRcs62",
+      "date": "Wed, 30 Jul 2025 18:30:00 GMT",
+      "description": "Please upload the zipped file",
+      "endTime": "Thu, 31 Jul 2025 11:30:00 GMT",
+      "startTime": "Thu, 31 Jul 2025 02:30:00 GMT",
+      "status": "active",
+      "title": "SDAM Assignment Submission"
+    }
+  },
+  "groups": {
+    "hR3xjspNLMHURCSSvDSL": {
+      "admins": [
+        "i14bEX30GkT509oJz0pggxsRcs62"
+      ],
+      "createdAt": "Wed, 30 Jul 2025 11:55:32 GMT",
+      "createdBy": "i14bEX30GkT509oJz0pggxsRcs62",
+      "groupDescription": null,
+      "groupImageUrl": null,
+      "groupName": "HighFive",
+      "lastMessage": "hii guys",
+      "lastMessageTime": "Wed, 30 Jul 2025 11:55:46 GMT",
+      "memberIds": [
+        "GNnXo23wI3Pqvo1ape4g2Tl7Kbe2",
+        "HEj4AuT9a2dsYFS7IiqvmHRIQjn2",
+        "i14bEX30GkT509oJz0pggxsRcs62"
+      ],
+      "messages": {
+        "MZrXxbumIMQgOjhf3LaQ": {
+          "deletedFor": [],
+          "fileName": null,
+          "fileType": null,
+          "fileUrl": null,
+          "groupId": "hR3xjspNLMHURCSSvDSL",
+          "isDeletedForEveryone": false,
+          "messageId": "MZrXxbumIMQgOjhf3LaQ",
+          "replyToMessageId": null,
+          "replyToSenderId": null,
+          "replyToText": null,
+          "senderId": "i14bEX30GkT509oJz0pggxsRcs62",
+          "status": "sent",
+          "text": "hii guys",
+          "timestamp": "Wed, 30 Jul 2025 11:55:43 GMT"
+        }
+      },
+      "unreadMessages": {
+        "GNnXo23wI3Pqvo1ape4g2Tl7Kbe2": 0,
+        "HEj4AuT9a2dsYFS7IiqvmHRIQjn2": 0,
+        "i14bEX30GkT509oJz0pggxsRcs62": 0
+      }
+    }
+  },
+  "notifications": {
+    "4NhoShYsRineerWmuAEA": {
+      "body": "hii guys",
+      "fcmToken": "canwY_-LTRKIs7BQ5tkKbA:APA91bGfpBF3zGrm4cibTWKvQDxrdgA0bylb1wBLuHRaEMklwQHC-B_mDKtjk1mV2JAQZRC4dCD4fmtTHo8A-1aB_V1de_wDoI8F38HRCtf8nlM_tR6VkY8",
+      "receiverId": "GNnXo23wI3Pqvo1ape4g2Tl7Kbe2",
+      "senderEmail": "dilankadev@gmail.com (in HighFive)",
+      "sentAt": "Wed, 30 Jul 2025 11:55:47 GMT",
+      "status": "sent",
+      "timestamp": "Wed, 30 Jul 2025 11:55:46 GMT",
+      "title": "New message from dilankadev@gmail.com (in HighFive)"
+    },
+    "jcSIBTaiNoyShvwkLS6e": {
+      "body": "Hello",
+      "fcmToken": "canwY_-LTRKIs7BQ5tkKbA:APA91bGfpBF3zGrm4cibTWKvQDxrdgA0bylb1wBLuHRaEMklwQHC-B_mDKtjk1mV2JAQZRC4dCD4fmtTHo8A-1aB_V1de_wDoI8F38HRCtf8nlM_tR6VkY8",
+      "receiverId": "GNnXo23wI3Pqvo1ape4g2Tl7Kbe2",
+      "senderEmail": "dilankadev@gmail.com",
+      "sentAt": "Wed, 30 Jul 2025 11:54:59 GMT",
+      "status": "sent",
+      "timestamp": "Wed, 30 Jul 2025 11:54:55 GMT",
+      "title": "New message from dilankadev@gmail.com"
+    },
+    "nGOFm3l4qY1mCZPdaHve": {
+      "body": "hii guys",
+      "fcmToken": "capNRP2xQvebE3My6Droag:APA91bHY2Ira4fn_dGg5pJ0wIRfYhyVE6nO1p9GsziKPplkGvR767xASlRCC_3YIQb47tFrTexZyR-TzWvhv5PdgE99PLSyvGJjRRjsubbLhBCIInIaoYZ8",
+      "receiverId": "HEj4AuT9a2dsYFS7IiqvmHRIQjn2",
+      "senderEmail": "dilankadev@gmail.com (in HighFive)",
+      "sentAt": "Wed, 30 Jul 2025 11:55:48 GMT",
+      "status": "sent",
+      "timestamp": "Wed, 30 Jul 2025 11:55:46 GMT",
+      "title": "New message from dilankadev@gmail.com (in HighFive)"
+    }
+  },
+  "support_tickets": {
+    "mSv3DquSDXr5haB2dyEx": {
+      "assignedAt": null,
+      "assignedTo": null,
+      "assignedToName": null,
+      "createdAt": "Wed, 30 Jul 2025 12:45:58 GMT",
+      "description": "JJFHJWFURHBDWHJFF",
+      "imageUrl": null,
+      "messages": {
+        "5zGaSGCXoh1cvF1Vxkv5": {
+          "createdAt": "Wed, 30 Jul 2025 12:46:01 GMT",
+          "isFromAdmin": true,
+          "message": "JJFHJWFURHBDWHJFF",
+          "senderId": "i14bEX30GkT509oJz0pggxsRcs62",
+          "senderName": "Dilanka Yasuru",
+          "ticketId": "mSv3DquSDXr5haB2dyEx"
+        }
+      },
+      "status": "closed",
+      "title": "ssfsfsfsNHBFHFsffF",
+      "updatedAt": "Wed, 30 Jul 2025 12:47:04 GMT",
+      "userId": "i14bEX30GkT509oJz0pggxsRcs62"
+    },
+    "vS8zbyYLTXOS2k9YmhuH": {
+      "assignedAt": null,
+      "assignedTo": null,
+      "assignedToName": null,
+      "createdAt": "Wed, 30 Jul 2025 16:21:49 GMT",
+      "description": "ad andbajdbajdbaugdatdagd",
+      "imageUrl": null,
+      "messages": {
+        "egRwxwt7I4oxjkVW7Tsg": {
+          "createdAt": "Wed, 30 Jul 2025 16:21:52 GMT",
+          "isFromAdmin": false,
+          "message": "ad andbajdbajdbaugdatdagd",
+          "senderId": "GNnXo23wI3Pqvo1ape4g2Tl7Kbe2",
+          "senderName": "Asha Subhashini",
+          "ticketId": "vS8zbyYLTXOS2k9YmhuH"
+        }
+      },
+      "status": "pending",
+      "title": "bnfbsfguiafaf",
+      "updatedAt": "Wed, 30 Jul 2025 16:21:53 GMT",
+      "userId": "GNnXo23wI3Pqvo1ape4g2Tl7Kbe2"
+    }
+  },
+  "users": {
+    "976bFqRL9XXldNJcCrvfuKicEvd2": {
+      "academicYear": 2,
+      "batchNo": "Batch 2024",
+      "course": "computer science",
+      "createdAt": "Thu, 17 Jul 2025 03:16:07 GMT",
+      "displayName": "Alex Chamara",
+      "email": "alexchamara76@gmail.com",
+      "photoURL": null,
+      "studentId": "CB012350",
+      "uid": "976bFqRL9XXldNJcCrvfuKicEvd2",
+      "userType": "student"
+    },
+    "GNnXo23wI3Pqvo1ape4g2Tl7Kbe2": {
+      "academicYear": 3,
+      "batchNo": "Batch 2023",
+      "course": "software engineering",
+      "createdAt": "Wed, 16 Jul 2025 15:43:06 GMT",
+      "displayName": "Asha Subhashini",
+      "email": "ashasubashini2005@gmail.com",
+      "fcmToken": "dVIT0W9VSQuXDZBpi9D7om:APA91bEC_DHMyoCb0wSRAJUuj61r-NmyxrEcvQp-7Tjy7G4NsfntApeb5Q5P9nJ85FdHarBSEwEMv1igO6Pkawt6W4dIMD0PrgXFDUAFWMKWBADcWRLTN3s",
+      "lastSeen": "Mon, 28 Jul 2025 06:59:40 GMT",
+      "lastUpdated": "Thu, 31 Jul 2025 09:23:00 GMT",
+      "online": false,
+      "photoURL": null,
+      "studentId": "CB012349",
+      "uid": "GNnXo23wI3Pqvo1ape4g2Tl7Kbe2",
+      "userType": "student"
+    },
+    "HEj4AuT9a2dsYFS7IiqvmHRIQjn2": {
+      "academicYear": 3,
+      "batchNo": "Batch 2023",
+      "course": "software engineering",
+      "createdAt": "Wed, 16 Jul 2025 15:37:30 GMT",
+      "displayName": "Dilanka Yasuru",
+      "email": "dilankayasuru001@gmail.com",
+      "fcmToken": "dVIT0W9VSQuXDZBpi9D7om:APA91bEC_DHMyoCb0wSRAJUuj61r-NmyxrEcvQp-7Tjy7G4NsfntApeb5Q5P9nJ85FdHarBSEwEMv1igO6Pkawt6W4dIMD0PrgXFDUAFWMKWBADcWRLTN3s",
+      "googleCalendarAuthenticated": false,
+      "googleCalendarAuthenticatedAt": "Wed, 30 Jul 2025 08:00:32 GMT",
+      "googleCalendarRevokedAt": "Wed, 30 Jul 2025 08:05:03 GMT",
+      "lastSeen": "Wed, 30 Jul 2025 11:35:33 GMT",
+      "lastUpdated": "Thu, 31 Jul 2025 09:46:51 GMT",
+      "online": false,
+      "photoURL": null,
+      "profilePictureUrl": "https://firebasestorage.googleapis.com/v0/b/ting-5b91d.firebasestorage.app/o/profile_pictures%2FHEj4AuT9a2dsYFS7IiqvmHRIQjn2_1753518243064?alt=media&token=79819d18-9747-40d7-bf1f-78cc47c7b9de",
+      "studentId": "CB012348",
+      "uid": "HEj4AuT9a2dsYFS7IiqvmHRIQjn2",
+      "userType": "student"
+    },
+    "Jm0WvDaxfDbJVNLZxzb1LbwD7sc2": {
+      "batchNo": "Batch 2023",
+      "createdAt": "Thu, 17 Jul 2025 03:16:44 GMT",
+      "department": "studentSupport",
+      "displayName": "Hirusha",
+      "email": "hirushabox@gmail.com",
+      "fcmToken": "cOwfydMfRZuVxMnev2m8UE:APA91bHJjlhxi3-75L-UNij4sjeMyYgq2S8GcPhUBnggbXJH2gKFUFBda_eONG5-EbBDQXK0pCcVgkvjynrnmSRTqOFUE47WX53PPrgvuQhPq7e8EZJeT68",
+      "lastUpdated": "Mon, 28 Jul 2025 17:49:00 GMT",
+      "photoURL": null,
+      "position": "Academic Advisor",
+      "staffId": "STF001",
+      "studentId": "CB012347",
+      "uid": "Jm0WvDaxfDbJVNLZxzb1LbwD7sc2",
+      "userType": "staff"
+    },
+    "VgRjmAbxl0NmH2WnO0jUGclgvc53": {
+      "batchNo": "Batch 2024",
+      "createdAt": "Thu, 17 Jul 2025 03:16:29 GMT",
+      "department": "IT",
+      "displayName": "Savindu Nipun",
+      "email": "savindunipun30@gmail.com",
+      "fcmToken": "canwY_-LTRKIs7BQ5tkKbA:APA91bGfpBF3zGrm4cibTWKvQDxrdgA0bylb1wBLuHRaEMklwQHC-B_mDKtjk1mV2JAQZRC4dCD4fmtTHo8A-1aB_V1de_wDoI8F38HRCtf8nlM_tR6VkY8",
+      "lastSeen": "Wed, 30 Jul 2025 10:15:27 GMT",
+      "lastUpdated": "Wed, 30 Jul 2025 19:29:36 GMT",
+      "lecturerId": "LEC001",
+      "modules": [
+        "Programming",
+        "Mobile App Development"
+      ],
+      "online": false,
+      "photoURL": null,
+      "studentId": "CB012346",
+      "uid": "VgRjmAbxl0NmH2WnO0jUGclgvc53",
+      "userType": "lecturer"
+    },
+    "i14bEX30GkT509oJz0pggxsRcs62": {
+      "batchNo": "Batch 2024",
+      "createdAt": "Sun, 20 Jul 2025 16:45:02 GMT",
+      "displayName": "Dilanka Yasuru",
+      "email": "dilankadev@gmail.com",
+      "fcmToken": "capNRP2xQvebE3My6Droag:APA91bHY2Ira4fn_dGg5pJ0wIRfYhyVE6nO1p9GsziKPplkGvR767xASlRCC_3YIQb47tFrTexZyR-TzWvhv5PdgE99PLSyvGJjRRjsubbLhBCIInIaoYZ8",
+      "googleCalendarAuthenticated": true,
+      "googleCalendarAuthenticatedAt": "Wed, 30 Jul 2025 07:58:34 GMT",
+      "lastSeen": "Thu, 31 Jul 2025 05:39:37 GMT",
+      "lastUpdated": "Wed, 30 Jul 2025 20:05:04 GMT",
+      "online": false,
+      "profilePictureUrl": "https://firebasestorage.googleapis.com/v0/b/ting-5b91d.firebasestorage.app/o/profile_pictures%2Fi14bEX30GkT509oJz0pggxsRcs62_1753330659427?alt=media&token=3632aaf5-f6d3-49e5-aec2-7b6885655a26",
+      "studentId": "CB012345",
+      "uid": "i14bEX30GkT509oJz0pggxsRcs62",
+      "userType": "admin"
+    }
+  }
+}
